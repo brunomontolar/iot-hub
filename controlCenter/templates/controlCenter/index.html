@@ -1,10 +1,70 @@
+{% load static %}
 <!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'controlCenter/style.css' %}">
+</head>
 <body>
-    {% csrf_token %} 
-    {% for f in form %}
-    <form>
+    <h1>Dispositivos</h1>
+    {% comment %} {% for f in form %} {% endcomment %}
+    <form action="/controlCenter/" method="post">
+        {% csrf_token %} 
         {{ form }}
+        <input type="submit" value="OK">
     </form>
-    {% endfor %}
-    <h1>Olá</h1>
+    <form action="/controlCenter/" method="post">
+        {% csrf_token %} 
+        {{ form2 }}
+        <input type="submit" value="OK">
+    </form>
+    <div class= "row">
+        <div class= "column">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Startup Date</th>
+                        <th>Heartbeat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for device in devices %}
+                    <tr>
+                        <td>{{ device.id }}</td>
+                        <td>{{ device.device }}</td>
+                        <td>{{ device.startup_date }}</td>
+                        <td>{{ device.heartbeat }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class= "column">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Device Name</th>
+                        <th>Input Name</th>
+                        <th>Input Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for action in actions %}
+                    <tr>
+                        <td>{{ action.id }}</td>
+                        <td>{{ action.device }}</td>
+                        <td>{{ action.input_name }}</td>
+                        <td>{{ action.input_type }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <li>
+        <h1>Te amo</h1>
+    </li>
+    {% comment %} {% endfor %} {% endcomment %}
+    
 </body>
