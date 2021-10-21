@@ -44,3 +44,16 @@ def deviceAdded(request):
 
 def test(request):
     return HttpResponse("Hello, world. You're at the polls index.")
+
+def addDevice(request):
+    if request.method == 'POST':
+        form = DevicesForm(request.POST)
+        # if form.is_valid():
+        #     return HttpResponseRedirect('/thanks')
+    else:
+        form = DevicesForm
+        form2 = ActionsForm
+    # latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    # output = ', '.join([q.question_text for q in latest_question_list])
+    # return render(request, 'controlCenter/index.html', context)
+    return render(request, 'controlCenter/add_devices.html', {'form': form, 'form2':form2})

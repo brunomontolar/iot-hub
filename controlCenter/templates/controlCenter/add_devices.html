@@ -1,0 +1,14 @@
+{% extends "controlCenter/index.html" %}
+{% block info %}
+    <h1>Novo dispositivo</h1>
+    <form class="form" action="/controlCenter/" method="post">
+        {% csrf_token %} 
+        {{ form.as_p }}
+        <input type="submit" value="OK">
+    </form>
+    <form class="form" action="/controlCenter/" method="post">
+        {% csrf_token %} 
+        {{ form2.as_p }}
+        <input type="submit" value="OK">
+    </form>
+{% endblock info %}

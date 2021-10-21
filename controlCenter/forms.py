@@ -13,6 +13,14 @@ class DevicesForm(ModelForm):
     class Meta:
         model = Devices
         fields = ['device', 'startup_date']
+        labels = {
+            'device': (''),
+            'startup_date': (''),
+        }
+        widgets = {
+            'device' : forms.TextInput(attrs = {'placeholder': 'Dispositivo'}),
+            'startup_date' : forms.TextInput(attrs = {'placeholder': 'Data'}),
+        }
 
 class ActionsForm(ModelForm):
     class Meta:

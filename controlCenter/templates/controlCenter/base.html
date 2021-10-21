@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" type="text/css" href="{% static 'controlCenter/style.css' %}">
+        <script src="{% static 'controlCenter/app.js' %}"></script> 
+        <title>Iot Hub</title>
+    </head>
+
+    <body>
+<div class="topnav">
+  <a class="active" href="#home">Dashboard</a>
+  <a href="/controlCenter">Dispositivos</a>
+  <a href="addDevice">Novo</a>
+  <a style="float: right" href="#about">User</a>
+</div>
+<div class="content">
+    {% block content %}{% endblock content %}
+</div|>
+    </body>
+</html>
