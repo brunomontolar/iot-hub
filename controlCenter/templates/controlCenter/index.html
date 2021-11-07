@@ -74,10 +74,11 @@
                 <div class ="dev-id">{{ device.id }}</div>
                 <div class ="dev-name">{{ device.device }}</div>
                 <div class ="dev-startup">{{ device.startup_date|date:'d/m/y' }}</div>
-                <div class ="dev-heartbeat">{{ device.heartbeat|date:'d/m/y h:m' }}</div>
+                <div class ="dev-heartbeat">{{ device.heartbeat|date:'d/m/y H:i' }}</div>
             </div>
             <div class= "box3">
                 <div class= "btn-remover3">Remover</div>
+                {% comment %} models.Devices.objects.filter(id=11).delete() {% endcomment %}
             </div>
         </div>
     {% endfor %}

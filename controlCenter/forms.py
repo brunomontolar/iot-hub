@@ -25,4 +25,4 @@ class DevicesForm(ModelForm):
 class ActionsForm(ModelForm):
     class Meta:
         model = Actions 
-        fields = ['device', 'input_name', 'input_value', 'input_type']
+        fields = ['device_id', 'input_name', 'input_value', 'input_type']
