@@ -10,7 +10,7 @@ def processRequest(request):
         header = request_authentication.requestHandler(request.headers, request.GET, request.body)
         if header.auth:
             # request_info = request_handler.web_request(request.GET, header.action)
-            return HttpResponse(f"Received POST - auth={header.auth} - action={header.action}")
+            return HttpResponse(f"Received POST - auth={header.auth} - action={header.action} - response {header.response}")
         else:
             return HttpResponse('Received POST')
     if request.method == 'GET':

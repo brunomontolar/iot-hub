@@ -1,18 +1,27 @@
 from controlCenter import models
 from django.utils import timezone
+import json
 username = 'bmm'
 token = 'a0efa2a3e7ede444a0b1eff83f91fd2a930eacf8dff36f278ac979eb5212dcaf'
 users_db = {username:token}
 # class requestAuthentication:
 class requestHandler:
+    def authenticationValidation(self):
+        #self.username = request_header.get('username', '')
+        #self.token = request_header.get('token', '')
+        if self.token[4:] == users_db[self.username]:
+            self.authentication = True
+            return True
+
     def processRequest(self):
         self.device_id = self.requestGET.get('device_id', '')
         
         ###
-        import json
-        body_unicode = self.requestBODY.decode('utf-8')
-        body = json.loads(body_unicode)
-        print(f'JSON Body: {body}')
+        if self.content == "appliction/json":
+            body_unicode = self.requestBODY.decode('utf-8')
+            body = json.loads(body_unicode)
+            print(f'JSON Body: {body}')
+
         ####
 
         if models.Devices.objects.filter(pk=self.device_id).exists():
@@ -46,13 +55,18 @@ class requestHandler:
     def __init__(self, request_header, request_GET, request_BODY):
         self.username = request_header.get('username', '')
         self.token = request_header.get('token', '')
-        if self.token[4:] == users_db[self.username]:
+        #if self.token[4:] == users_db[self.username]:
+        if self.authenticationValidation():
+            self.response = 'Autenticado'
             self.content = request_header.get('Content-Type')
             self.action = request_header.get('action')
             self.auth = True
             self.requestGET = request_GET
             self.requestBODY = request_BODY
-            self.processRequest()
+            try: 
+                self.processRequest()
+            except:
+                self.response = "Bad Request"
             return
         else:
             self.auth = False
